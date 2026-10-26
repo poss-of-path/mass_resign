@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mass_Resign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0a3399;--red:#ff1a1a;--gray:#9a9a9a;--line:#d0d0d0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;font-weight:400;background:#f2f2f2;display:flex;justify-content:center;padding:20px 12px;color:#111}
+.wrap{width:100%;max-width:490px}
+.progress{display:flex;align-items:center;gap:10px;margin-bottom:14px;justify-content:center}
+.bar{width:160px;height:5px;background:#d9d9d9;border-radius:9px;overflow:hidden}
+.bar i{display:block;width:65%;height:100%;background:var(--red)}
+.progress span{font-size:7px;font-weight:600}
+.card{background:#fff;border-radius:26px;overflow:hidden;padding-bottom:22px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.header{height:125px;background:#f0f0f0 url(assets/header.png) center/cover no-repeat;border-radius:0 0 26px 26px}
+.body{padding:0 28px;position:relative}
+.ava{width:100px;height:100px;border-radius:50%;border:6px solid #fff;background:#fff url(assets/ava.png) center/cover;margin-top:-62px;position:relative}
+h1{font-size:19px;font-weight:700;color:var(--blue);margin-top:14px;letter-spacing:.2px}
+.tag{font-size:12px;font-weight:400;margin-top:6px}
+.tag b{font-weight:700;color:var(--blue)}
+.ask{position:absolute;right:28px;top:48px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:500;color:#111;text-decoration:underline}
+.ask i{width:22px;height:22px;border-radius:6px;background:var(--blue);display:inline-block;position:relative}
+.ask i:after{content:"?";color:#ffd400;font-size:12px;font-weight:700;position:absolute;inset:0;text-align:center;line-height:22px}
+.stats{margin-top:14px;font-size:11px;font-weight:500;color:var(--gray);display:flex;gap:24px}
+.mutual{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:500;color:var(--gray)}
+.mutual img{height:20px;width:auto;display:block}
+.btns{display:flex;gap:9px;margin-top:14px}
+.btn{font-family:inherit;font-size:11px;font-weight:600;border-radius:99px;padding:6px 14px;cursor:pointer;display:flex;align-items:center;gap:6px;border:1.5px solid}
+.b1{background:var(--blue);border-color:var(--blue);color:#fff;padding:6px 16px}
+.b2{background:#fff;border-color:var(--blue);color:var(--blue)}
+.b3{background:#fff;border-color:#bbb;color:var(--gray);font-weight:500}
+hr{border:0;border-top:1px solid var(--line);margin:20px 0 18px}
+.acc{border:1.5px solid #cfcfcf;border-radius:14px;margin:0 18px 12px;box-shadow:0 2px 4px rgba(0,0,0,.08);background:#fff}
+.acc-h{width:100%;background:none;border:0;font-family:inherit;display:flex;align-items:flex-start;gap:12px;padding:12px 14px;cursor:pointer;text-align:left}
+.acc-h svg.d{flex:none;margin-top:2px}
+.acc-t{flex:1}
+.acc-t b{display:block;font-size:11.5px;font-weight:700;color:#000}
+.acc-t span{display:block;font-size:11.5px;font-weight:400;color:#222;margin-top:3px}
+.chev{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:9px solid #8a8a8a;margin-top:6px;transition:transform .3s}
+.acc.open .chev{transform:rotate(180deg)}
+.acc-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.acc.open .acc-b{grid-template-rows:1fr}
+.acc-b>div{overflow:hidden}
+.acc-in{padding:6px 18px 20px}
+/* about */
+.about p{font-size:12px;line-height:1.6;color:#222;margin-bottom:8px}
+/* HR */
+h2{font-size:22px;font-weight:700;color:var(--blue)}
+.sub{font-size:12px;font-weight:400;color:var(--gray);margin:4px 0 14px}
+.hr{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.hr img{width:100%;height:auto;display:block}
+/* regulations */
+.rules{display:flex;flex-direction:column;gap:9px}
+.rule{display:flex;align-items:center;gap:12px;border:1.5px solid #cfcfcf;border-radius:12px;padding:10px 12px;box-shadow:0 2px 4px rgba(0,0,0,.08);font-size:11.5px;font-weight:400;line-height:1.4;text-align:justify}
+.n{flex:none;width:18px;height:18px;border-radius:50%;background:var(--blue);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center}
+/* join */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:start}
+.step{display:grid;grid-template-columns:auto 1fr;column-gap:8px;align-items:center;align-content:start}
+.step .n{width:24px;height:24px;font-size:10px}
+.step h3{font-size:14px;font-weight:700;color:var(--blue)}
+.step p{grid-column:2;font-size:11px;font-weight:400;line-height:1.4;text-align:justify;margin-top:8px}
+.join-hr{border:0;border-top:2px solid #c8c8c8;margin:18px 0 12px}
+.fin{text-align:center;font-size:11.5px;font-weight:700;color:var(--blue)}
+html{-webkit-text-size-adjust:100%}
+@media(max-width:490px){body{padding:12px 8px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="progress"><div class="bar"><i></i></div><span>Mass_Resign</span></div>
+
+  <div class="card">
+    <div class="header"></div>
+    <div class="body">
+      <div class="ava"></div>
+      <a class="ask" href="#"><i></i>Ask more? Click here!</a>
+      <h1>Mass_Resign</h1>
+      <div class="tag">Everybody say it with me: <b>I resign!</b></div>
+      <div class="stats"><span>7.287 followers</span><span>500+ connections</span></div>
+      <div class="mutual"><img src="assets/mutual.png" alt=""><span>40+ mutual connectins</span></div>
+      <div class="btns">
+        <button class="btn b1"><svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>Message</button>
+        <button class="btn b2">views X profile</button>
+        <button class="btn b3">more</button>
+      </div>
+    </div>
+    <hr>
+
+    <!-- ABOUT -->
+    <div class="acc">
+      <button class="acc-h"><svg class="d" width="22" height="18" viewBox="0 0 24 20" fill="none" stroke="#0a3399" stroke-width="1.6" stroke-linejoin="round"><path d="M6 2h12l5 6-11 11L1 8z"/><path d="M1 8h22M8 8l4 11 4-11M6 2l2 6 4-6 4 6 2-6"/></svg><div class="acc-t"><b>About</b><span>About us</span></div><i class="chev"></i></button>
+      <div class="acc-b"><div><div class="acc-in about">
+        <p>Isi about concept di sini.</p>
+        <p>Tambahkan paragraf lain sesuai kebutuhan.</p>
+      </div></div></div>
+    </div>
+
+    <!-- HR TEAM -->
+    <div class="acc">
+      <button class="acc-h"><svg class="d" width="22" height="18" viewBox="0 0 24 20" fill="none" stroke="#0a3399" stroke-width="1.6" stroke-linejoin="round"><path d="M6 2h12l5 6-11 11L1 8z"/><path d="M1 8h22M8 8l4 11 4-11M6 2l2 6 4-6 4 6 2-6"/></svg><div class="acc-t"><b>HR Team</b><span>HR Team</span></div><i class="chev"></i></button>
+      <div class="acc-b"><div><div class="acc-in">
+        <h2>HR Team</h2>
+        <div class="hr"><img src="assets/hr1.png" alt=""><img src="assets/hr2.png" alt=""><img src="assets/hr3.png" alt=""></div>
+      </div></div></div>
+    </div>
+
+    <!-- SOP -->
+    <div class="acc">
+      <button class="acc-h"><svg class="d" width="22" height="18" viewBox="0 0 24 20" fill="none" stroke="#0a3399" stroke-width="1.6" stroke-linejoin="round"><path d="M6 2h12l5 6-11 11L1 8z"/><path d="M1 8h22M8 8l4 11 4-11M6 2l2 6 4-6 4 6 2-6"/></svg><div class="acc-t"><b>Standard Operating Procedure (SOP)</b><span>Read this before join us</span></div><i class="chev"></i></button>
+      <div class="acc-b"><div><div class="acc-in">
+        <h2>Regulations</h2>
+        <div class="sub">Read this first before....</div>
+        <div class="rules">
+          <div class="rule"><span class="n">1</span>One summer spot per person, that’s all you need!</div>
+          <div class="rule"><span class="n">2</span>face claims born in 2006 or earlier are welcome at fluspop.</div>
+          <div class="rule"><span class="n">3</span>we accept all-star! but please keep face claims with ties to zionism or ongoing controversies out of fluspop.</div>
+          <div class="rule"><span class="n">4</span>keep the summer going! the minimum activity is 50 tweets on the first day and 30 tweets on each following day.</div>
+          <div class="rule"><span class="n">5</span>fluspop season runs for 6 days only. if you know you won’t be able to reach the daily target, please let the caretakers know beforehand.</div>
+          <div class="rule"><span class="n">6</span>inactivity for more than 24 hours without notice may result in unverification.</div>
+          <div class="rule"><span class="n">7</span>Swearing is okay as long as it is kept within reason. please keep things fun and avoid overly vulgar, graphic, or explicit content!</div>
+        </div>
+      </div></div></div>
+    </div>
+
+    <!-- HOW TO JOIN -->
+    <div class="acc">
+      <button class="acc-h"><svg class="d" width="22" height="18" viewBox="0 0 24 20" fill="none" stroke="#0a3399" stroke-width="1.6" stroke-linejoin="round"><path d="M6 2h12l5 6-11 11L1 8z"/><path d="M1 8h22M8 8l4 11 4-11M6 2l2 6 4-6 4 6 2-6"/></svg><div class="acc-t"><b>How to Join the Resignation</b><span>How to join us?</span></div><i class="chev"></i></button>
+      <div class="acc-b"><div><div class="acc-in">
+        <h2>How to Join</h2>
+        <div class="sub">How to join our resignation</div>
+        <div class="steps">
+          <div class="step"><span class="n">1</span><h3>Following</h3><p>make sure you're already following @Mass_Resign!</p></div>
+          <div class="step"><span class="n">2</span><h3>Clearing</h3><p>Please clear your timeline with at least 5 blank-space tweets, replies, and retweets.</p></div>
+          <div class="step"><span class="n">3</span><h3>Filling</h3><p>Filling the form once it has been posted.</p></div>
+        </div>
+        <hr class="join-hr">
+        <div class="fin">After all, please wait for the verification announcement patiently!</div>
+      </div></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Mobile: layout tetap sama persis, hanya diskalakan proporsional
+function fit(){
+  var w=document.querySelector('.wrap'),D=440,avail=window.innerWidth-16;
+  if(avail<490){w.style.maxWidth='none';w.style.width=D+'px';w.style.zoom=avail/D}
+  else{w.style.maxWidth='';w.style.width='';w.style.zoom=''}
+}
+fit();window.addEventListener('resize',fit);
+document.querySelectorAll('.acc-h').forEach(function(h){
+  h.addEventListener('click',function(){h.parentElement.classList.toggle('open')});
+});
+</script>
+</body>
+</html>
